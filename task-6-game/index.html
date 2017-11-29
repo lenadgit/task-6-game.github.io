@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+.wrapper {
+	width: 700px;
+	margin: 0 auto;
+}
+.inner-wrapper {
+	position: relative;
+}
+.river {
+	position: relative;
+	height: 100px;
+	background: lightblue;
+}
+.mainfield {
+	margin-top: 0;
+	background: lightgrey;
+	width: 100%;
+	height: 400px;
+}
+.block {
+	position: relative;
+	width: 80px;
+	height: 80px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	background: lightgrey;
+}
+.grass {
+	position: relative;	
+	height: 90px;
+	background: lightgreen;
+}
+.player {
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: black;
+}
+.window {
+	width: 100px;
+	height: 50px;
+	background: violet;
+	margin: 0 auto;
+	display: block;
+	display: none;
+	z-index: 2;
+}
+
+@keyframes moving {
+	to {
+		transform: translateX(700px);
+		}
+	100% {
+		transform translateX(0);	
+} 
+}
+
+.enemy-1	{
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	bottom: 90px;
+	left: -80px;
+	background: grey;
+animation-name: moving;
+animation-duration: 4s;
+animation-iteration-count: 10000;
+animation-delay: 2s;
+
+}
+.enemy-2	{
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	bottom: 170px;
+	left: -80px;
+	background: brown;
+
+animation-name: moving;
+animation-duration: 6s;
+animation-iteration-count: 10000;
+animation-delay: 3s;
+}
+.enemy-3	{
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	bottom: 250px;
+	left: -80px;
+	background: red;
+
+animation-name: moving;
+animation-duration: 7s;
+animation-iteration-count: 10000;
+animation-delay: 5s;	
+}
+.enemy-4	{
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	bottom: 330px;
+	left: -80px;
+	background: green;
+
+animation-name: moving;
+animation-duration: 8s;
+animation-iteration-count: 10000;
+animation-delay: 6s;	
+}
+.enemy-5	{
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	bottom: 410px;
+	left: -80px;
+	background: yellow;
+
+animation-name: moving;
+animation-duration: 2s;
+animation-iteration-count: 10000;
+animation-delay: 4s;	
+}
+	</style>
+
+</head>
+<body>
+	<div class = "wrapper">  
+	<div class = "inner-wrapper">
+		<div class = "river">
+			<div class = "window">you win</div>
+		</div>  
+		<div class = "mainfield">
+				<div class = "enemy-5"></div>
+				<div class = "enemy-4"></div>
+				<div class = "enemy-3"></div>
+				<div class = "enemy-2"></div>
+				<div class = "enemy-1"></div>
+		</div> 
+		<div class = "grass">
+			<div class = "player"></div>
+		</div>
+	</div> 
+	</div> 
+
+	<script type="text/javascript">
+	///////BUTTON'S NAVIGATION FOR PLAYER
+	var moveLeft = function(event) {
+     	    if (event.keyCode == 37) {
+       var nodeL = document.querySelector('.player')     	
+       var nodeLeft = parseInt(nodeL.style.left) || 0
+      nodeL.style.left = (nodeLeft - 80)+'px';
+     }
+};
+        document.documentElement.addEventListener('keydown', moveLeft, false);
+	
+
+	var moveRight = function(event) {
+	        if (event.keyCode == 39) {
+       var nodeR = document.querySelector('.player')     	
+       var nodeRight = parseInt(nodeR.style.left) || 0
+      nodeR.style.left = (nodeRight + 80)+'px';
+     }
+};
+		document.documentElement.addEventListener('keydown', moveRight, false);
+
+	var moveUp = function(event) {
+	        if (event.keyCode == 38) {
+       var nodeU = document.querySelector('.player')     	
+       var nodeUp = parseInt(nodeU.style.top) || 0
+      nodeU.style.top = (nodeUp - 80)+'px';
+     }
+};
+		document.documentElement.addEventListener('keydown', moveUp, false);
+
+	var moveDown = function(event) {
+	        if (event.keyCode == 40) {
+       var nodeD = document.querySelector('.player')     	
+       var nodeDown = parseInt(nodeD.style.top) || 0
+      nodeD.style.top = (nodeDown + 80)+'px';
+     }
+};
+		document.documentElement.addEventListener('keydown', moveDown, false);	
+
+/////////WIN
+	var win = function(winend) {	        
+       var winner = document.querySelector('.player') 
+       if(winner.style.top == "-480px") {
+       	//alert("you win");
+       	var appearWindow = document.querySelector('.window');
+       	appearWindow.style.display = "block";
+       	}     
+      };
+		document.documentElement.addEventListener('keydown', win, false);
+
+/////////LOOSE
+function Touch() {
+	var firstTouch = document.querySelector('.player');
+	var firstblockToch = document.querySelector('.enemy-1');
+	if(firstblockToch.style.left == (firstTouch.style.left + (80 + "px"))) {
+		firstToch.style.background = "green";
+		console.log("111")
+	}
+}
+	Touch();
+//}
+//document.documentElement.addEventListener('load', firstBlock, false);		
+
+	</script>
+</body>
+</html>
